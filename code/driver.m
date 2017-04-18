@@ -1,39 +1,27 @@
+% Starting Functions
+ns = 10:20:120;
 
-f = @(t,y) -y+t+1;
-y = @(t) exp(-t)+t;
-a = 0; b = 5; 
-y0 = y(a); ns = [25,50,100];
+f = @(t,y) 2*y./t; 
+y = @(t) 3*t.^2; 
+a = -1; b = -0.1; 
+figure;
+err1 = RunAllMethods(f,y,a,b,ns,'dy/dt=2y/t');
 
-% Eulers Method
-%subplot(1,4,1); 
-plot(a:.1:b,y(a:.1:b),'*'); hold on;
-leg = {'y(t)'};
-for n = ns
-    [yt,t] = Eulers(f,y0,a,b,n);
-    plot(t,yt);
-    leg{end+1} = sprintf('h=%d',round((b-a)/n,4));
-end
-title('Eulers Method')
+f = @(t,y) 2*t.^2.*y; 
+y = @(t) 2*exp(2*t.^3/3); 
+a = 0; b = 3; 
+figure;
+err2 = RunAllMethods(f,y,a,b,ns,'dy/dt=2t^2y');
 
-% Midpoint Method
-subplot(1,4,2); plot(a:.1:b,y(a:.1:b),'*'); hold on;
-leg = {'y(t)'};
-for n = ns
-    [yt,t] = Midpoint(f,y0,a,b,n);
-    plot(t,yt);
-    leg{end+1} = sprintf('h=%d',round((b-a)/n,4));
-end
-title('Midpoint Method')
+f = @(t,y) y.^t; 
+y = @(t) (10 - t.*(t - 1)).^(1./(-t + 1)); 
+a = -2; b = 0; 
+figure;
+err3 = RunAllMethods(f,y,a,b,ns,'dy/dt=y^t');
 
-% Heuns Method
-subplot(1,4,3); plot(a:.1:b,y(a:.1:b),'*'); hold on;
-leg = {'y(t)'};
-for n = ns
-    [yt,t] = Midpoint(f,y0,a,b,n);
-    plot(t,yt);
-    leg{end+1} = sprintf('h=%d',round((b-a)/n,4));
-end
-title('Heuns Method')
+f = @(t,y) t.*y.^2; 
+y = @(t) 2./(3-t.^2); 
+a = -1; b = 1.5; 
+figure;
+err4 = RunAllMethods(f,y,a,b,ns,'dy/dt=ty^2');
 
-h = get(gca,'Children');
-legend(h,leg(end:-1:1));

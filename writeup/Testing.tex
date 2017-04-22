@@ -108,9 +108,9 @@
 %\lstinputlisting[language=Matlab]{cub_spline.m} %Use this to add code
 \renewcommand{\abstractname}{Abstract}
 \begin{document}
-\title{MAT 125B - Homework \# 7}
+\title{MAT 128C - 1st Order IVP Unit Testing}
 \author{Douglas Sherman \#: 913348406}
-\date{January 27th, 2017}
+\date{April 21st, 2017}
 \maketitle
 \rule{\textwidth}{1pt}
 \lstset{style=small} %set code style, see preamble
@@ -126,41 +126,72 @@ To test that the numerical computations are returning accurate numerical approxi
 \hline
 $y' = 2t^2y(t)$	&$y(0) = 2$	&$y(t)=2e^{2t^3/3}$		\\
 	\hline
-	$y' = y(t)^t$	&$y(-2) = 1.5874$	&$y(t)=(10-t(t - 1))^{1/(1-t)}$		\\
-	\hline
 	$y' = ty(t)^2$	&$y(-1) = 1$	&$y(t)=2/(3 - t^2)$		\\
 	\hline
 \end{tabular}\\
 \begin{scriptsize}
-{\bf \stepcounter{tables}\arabic{tables}.} Selection of known Initial Value Problems
+{\bf \stepcounter{tables}\arabic{tables}.} Selection of known Initial Value Problems using SymPy for Confirmation
 \end{scriptsize}
 \end{center}
-Once the known IVPs were determined we tested the accuracy of different numerical approximation including Euler's Method, the midpoint method, and Heun's Method. The Following illustrates the accuracy for the various number of intervals $n$. 
+
+\subsection*{Consistency of Y(t)}
+Once the known IVPs were determined we tested the average accuracy of different numerical approximation method including Euler's Method, the midpoint method, and Heun's Method. The accuracy was measured by 
+$$\sum_{i=1}^n \frac{1}{n} \abs{y(t_k)-y_k}$$
+where $n = (b-a)/h$. The Following illustrates the accuracy for the various number of intervals $n$. 
+
 
 \begin{center}
-\includegraphics[width = 6in]{1st.png}\\
+\includegraphics[width = 6.5in]{1st.png}\\
 \begin{scriptsize}
 {\bf \stepcounter{graphics}\arabic{graphics}.} Comparison of Multiple Methods for $y' = 2y/t$
 \end{scriptsize}
 \end{center}
+
 \begin{center}
-\includegraphics[width = 6in]{2nd.png}\\
+\includegraphics[width = 6.5in]{2nd.png}\\
 \begin{scriptsize}
 {\bf \stepcounter{graphics}\arabic{graphics}.} Comparison of Multiple Methods for $y' = 2t^2y$
 \end{scriptsize}
 \end{center}
+%
+%\begin{center}
+%\includegraphics[width = 6in]{3rd.png}\\
+%\begin{scriptsize}
+%{\bf \stepcounter{graphics}\arabic{graphics}.} Comparison of Multiple Methods for $y' = y^t$
+%\end{scriptsize}
+%\end{center}
+
 \begin{center}
-\includegraphics[width = 6in]{3rd.png}\\
-\begin{scriptsize}
-{\bf \stepcounter{graphics}\arabic{graphics}.} Comparison of Multiple Methods for $y' = y^t$
-\end{scriptsize}
-\end{center}
-\begin{center}
-\includegraphics[width = 6in]{4th.png}\\
+\includegraphics[width = 6.5in]{4th.png}\\
 \begin{scriptsize}
 {\bf \stepcounter{graphics}\arabic{graphics}.} Comparison of Multiple Methods for $y' = ty^2$
 \end{scriptsize}
 \end{center}
+
+Here we see that the known solution to each IVP shows good agreement with the approximated solution for different values of $h$. Moreover, we see the smaller the $h$ the better the solution, which supports that the numerical solutions are behaving appropriately. 
+
+\subsection*{Local Truncation Error}
+Another method we can use to verify our methodology is correct is to compare the local truncation error. For example, in Euler's method we obtain,
+
+$$\abs{\frac{y(t_{k+1}) - y(t_k)}{h} - f(t_k,y(t_k))} = \abs{hy''(\xi)}=\mathcal{O}(h) $$
+\paragraph{}
+So the error of Euler's method is $\mathcal{O}(h)$, and similarly both Midpoint and Heun's method are $\mathcal{O}(h^2)$.
+Trivially, we see that the error in Heun's and the Midpoint method converge to 0 much quicker than Euler's, but we can analyze the error in detail to support the correctness of our algorithms. Below displays Error$\times h^k$ where $k = 1$ for Euler's and $2$ otherwise.
+\begin{center}
+\includegraphics[width = 4.4in]{Error.png}\\
+\begin{scriptsize}
+{\bf \stepcounter{graphics}\arabic{graphics}.} Error of Each Method Times its Truncation Error Order
+\end{scriptsize}
+\end{center}
+Here we see that the error multiplied by its truncation error order converges to a constant value confirming that each algorithm does indeed follow the model's expected truncation error. Thus, between plots above illustrating convergence to $y(t)$ and the error plot illustrating that this convergence happens at the expected rate, we have significant confidence in each model's correctness.
+\pagebreak
+\subsection*{Appendix}
+The following are the algorithms implimented for Euler's, Midpoint, and Heun's method.
+
+\lstinputlisting[language=Matlab]{../../Computing/code/Eulers.m}
+\lstinputlisting[language=Matlab]{../../Computing/code/Midpoint.m}
+\lstinputlisting[language=Matlab]{../../Computing/code/Heuns.m}
+
 
 
 \end{document}

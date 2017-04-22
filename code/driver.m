@@ -25,3 +25,12 @@ a = -1; b = 1.5;
 figure;
 err4 = RunAllMethods(f,y,a,b,ns,'dy/dt=ty^2');
 
+
+% Comparing h values
+ns = 10:2:40;
+f = @(t,y) t.*y.^2; 
+y = @(t) 2./(3-t.^2); 
+a = -1; b = 1.5; 
+figure;
+err_compare = RunAllMethods(f,y,a,b,ns,'for comparing');
+

@@ -1,3 +1,10 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Impliments Heun's Method   %
+% for approximating an IVP   %
+% y' = f(t,y(t)), y(a)=y0    %
+% across n intervals for     %
+% t in [a,b]			     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [y,t] = Heuns(f,y0,a,b,n)
     h = (b-a)/n;
     y = ones(1,n+1).*y0; 

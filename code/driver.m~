@@ -1,24 +1,12 @@
 % Starting Functions
 ns = 25;
-
-f = @(t,y) -10*y+10*t+1;
-y = @(t) exp(-10*t+1)+t; 
-a = 0; b = 1; n = 10;
-
-f = @(t,y) -20*y+20*sin(t)+cos(t);
+n = 8;
+f = @(t,y) -20*y + 20*sin(t) + cos(t);
 y = @(t) sin(t) + exp(-20*t); 
-a = 0; b = 2; n = 8;
+a = 0; b = 2; 
+[y1,t] = Eulers(f,y(a),a,b,n);
+[y2,t] = Eulers(f,y(a),a,b,n);
 
-[y1,~] = Eulers(f,y(a),a,b,n);
-[y2,t] = RungeKutta(f,y(a),a,b,n);
-[y3,t2] = Eulers(f,y(a),a,b,n*2);
-
-plot(t,y(t),'*'); hold on;
-plot(t,y1); plot(t,y2,'g'); plot(t2,y3,'-.');
-%legend({'Actual','Eulers','RungeKutta'},'FontSize',14)
-legend({'Actual','Eulers','RungeKutta','h=0.125'},'FontSize',14)
-xlabel('t','Fontsize',18); ylabel('y(t)','Fontsize',18)
-title('Different Methods with h=0.1','Fontsize',18)
 
 
 

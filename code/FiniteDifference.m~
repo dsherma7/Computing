@@ -1,0 +1,6 @@
+function x = FiniteDifference(n,r,f,alpha,beta)
+    x = 1./(1:n);
+    ri = r(
+    A = (1/h^2)*toeplitz([-1,,zeros(1,n-2)]);
+
+end

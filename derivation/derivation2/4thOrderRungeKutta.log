@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  3 MAY 2017 18:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  4 MAY 2017 19:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -896,7 +896,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 115--117
  []
 
 
-Overfull \hbox (187.95345pt too wide) in paragraph at lines 140--140
+Overfull \hbox (61.16765pt too wide) in paragraph at lines 138--138
 [] 
  []
 
@@ -904,19 +904,19 @@ Overfull \hbox (187.95345pt too wide) in paragraph at lines 140--140
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 [2]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 154.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 154.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 162.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 162.
  (./4thOrderRungeKutta.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 154.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 154.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 162.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 162.
 Package rerunfilecheck Info: File `4thOrderRungeKutta.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 154.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 162.
  ) 
 Here is how much of TeX's memory you used:
  20698 strings out of 493014
  395855 string characters out of 6133351
- 473318 words of memory out of 5000000
+ 477318 words of memory out of 5000000
  23866 multiletter control sequences out of 15000+600000
  10389 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -930,7 +930,7 @@ local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/lo
 cal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local
 /texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/
 texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on 4thOrderRungeKutta.pdf (2 pages, 96588 bytes).
+Output written on 4thOrderRungeKutta.pdf (2 pages, 97569 bytes).
 PDF statistics:
  56 PDF objects out of 1000 (max. 8388607)
  42 compressed objects within 1 object stream

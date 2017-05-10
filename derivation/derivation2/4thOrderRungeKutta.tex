@@ -108,9 +108,9 @@
 %\lstinputlisting[language=Matlab]{cub_spline.m} %Use this to add code
 \renewcommand{\abstractname}{Abstract}
 \begin{document}
-\title{Derivation of 4th Order Runge-Kutta Method}
+\title{MAT 125B - Homework \# 7}
 \author{Douglas Sherman \#: 913348406}
-\date{May 5th, 2017}
+\date{January 27th, 2017}
 \maketitle
 \rule{\textwidth}{1pt}
 \lstset{style=small} %set code style, see preamble
@@ -121,24 +121,26 @@ $$ \left\lbrace \begin{matrix}
 y'(t) &= f(t,y(t))\\
 y(t_0) &= y_0
 \end{matrix}\right.$$
-for a function Lipschitz continuous function $f$. To approximate the solution $y(t)$, the Runge-Kutta method uses an intermediate $y$ value to enhance the approximation of each successive approximation $y_k \approx y(t_k)$ as
+for a function Lipschitz continuous function $f$. To approximate the solution $y(t)$, the Runge-Kutta method uses an intermediate $y$ value to enhance the approximation of each successive approximation $y_k \approx y(t_k)$. By using multiple intermediate steps we can define a 4th order Runge Kutta method as
 \begin{align*}
-\widetilde{y}_{k+\alpha} &= y_k + \alpha h f(t_k,y_k)\\
-\widetilde{y}_{k+\delta} &= y_k + \delta h f(t_k,y_k)\\
-y_{k+1} &= y_k + \beta h f(t_k,y_k) + \gamma h f(t_k + \alpha h, \widetilde{y}_{k+\alpha}) + \eta h f(t_k + \delta h, \widetilde{y}_{k+\delta})
+y_{k+\alpha} &= \alpha f(t_k,y_k)\\
+y_{k+\beta} &= \beta f(t_k + \alpha h,y_{k+\alpha})\\
+y_{k+\gamma} &= \gamma f(t_k + \beta h,y_{k+\beta})\\
+y_{k+\delta} &= \delta f(t_k + \gamma h,y_{k+\gamma})\\
+y_{k+1} &= y_k + \eta h l
 \end{align*}
-for some $\alpha, \beta,\gamma,\delta,$ and $\eta$ that must be consistent with the Taylor expandion of $y' = f$. Define $f_{y}$ and $f_{t}$ as the partial derivatives of $f$ with respect to $y$ and $t$ respectively. Moreover, since $f$ is continuously differentiable, the mixed partials of $f$ are equivalent. Then the chain rule and Taylor's theorem gives us
+for some $\alpha, \beta,$ and $\gamma$ that must be consistent with the Taylor expandion of $y' = f$. Define $f_{y}$ and $f_{t}$ as the partial derivatives of $f$ with respect to $y$ and $t$ respectively. Moreover, since $f$ is continuously differentiable, the mixed partials of $f$ are equivalent. Then the chain rule and Taylor's theorem gives us
 \begin{align*}
 f(t_k+\alpha h,\widetilde{y}_{k+\alpha}) &= f(t_k+\alpha h,y_k + \alpha h f(t_k,y_k))\\
-&= f(t_k,y_k) +  \alpha h \left[ f_t + ff_y\right] + \frac{(\alpha h)^2}{2} \left[f_{tt} + ff_{ty} + f^2f_{yy} \right]
- + \frac{(\alpha h)^3}{6} \left[f_{ttt} + 3ff_{tty}+3f^2f_{tyy} + f^3f_{yyy}  \right]\\ &\quad+ \frac{(\alpha h)^4}{24} \left[ f_{tttt} + 4ff_{ttty} + 6f^2f_{ttyy} + 4f^3f_{tyyy} + f^4f_{yyyy} \right] + \mathcal{O}(h^5)
+&= f(t_k,y_k) +  \alpha h \left[ f_t + ff_y\right] + \frac{(\alpha h)^2}{2} \left[f_{tt} + ff_{ty} + f^2f_{yy} \right] + \mathcal{O}(h^3)\\
+f(t_k+\gamma h,\widetilde{y}_{k+\gamma}) &= f(t_k+\gamma h, y_k + \gamma h f(t_{k}+\alpha h,\widetilde{y}_{k+\alpha}))\\
+&= f(t_k,y_k) + \gamma (\gamma hf(t_k+\alpha h,\widetilde{y}_{k+\alpha))\left( \right)
+
 \end{align*}
-as $\alpha$ is arbitrary this also holds for $f(t_k+\delta h,\widetilde{y}_{k+\delta})$. Thus the iterative step for $y_{k+1}$ is given by
+Thus the iterative step for $y_{k+1}$ is given by
 \begin{align*}
-y_{k+1} &= y_k + \beta h f(t_k,y_k) + \gamma h f(t_k + \alpha h, \widetilde{y}_{k+\alpha}) + \eta h f(t_k + \delta h, \widetilde{y}_{k+\delta})\\
-&= y_k + (\beta + \gamma +\eta)h f(t_k,y_k) + (\gamma + \eta) (\alpha +\delta)h^2 \left[ f_t + ff_y\right] + (\gamma + \eta)\frac{(\alpha^2+\delta^2) h^3}{2} \left[ f_{tt} + ff_{ty} + f^2f_{yy} \right]\\
-&\quad + (\gamma + \eta)\frac{(\alpha^3 +\delta^3)h^4}{6} \left[ f_{ttt} + 3ff_{tty}+3f^2f_{tyy} + f^3f_{yyy}  \right]\\
-&\quad + (\gamma + \eta)\frac{(\alpha^4  +\delta^4) h^5}{24} \left[ f_{tttt} + 4ff_{ttty} + 6f^2f_{ttyy} + 4f^3f_{tyyy} + f^4f_{yyyy} \right] + \mathcal{O}(h^5) 
+y_{k+1} &= y_k + \eta h f(t_k,y_k) + \nu h f(t_k + \gamma h, \widetilde{y}_{k+\gamma})\\
+&= y_k + \eta h f(t_k,y_k) + \nu h \left( f(t_k,y_k) +  \gamma h \left[ f_t + ff_y\right] + \frac{(\alpha h)^2}{2} \left[f_{tt} + ff_{ty} + f^2f_{yy} \right] + \mathcal{O}(h^3)\right)
 \end{align*}
 Moreover, the Taylor expansion of the actual solution $y(t_{k+1})$ is given by
 \begin{align*}
@@ -147,9 +149,15 @@ y(t_{k+1}) &= y(t_k) + hy'(t_k) + \frac{h^2}{2}y''(t_k) + \frac{h^3}{6}y'''(t_k)
 \end{align*}
 Hence, we must choose $\alpha,\beta,\gamma,\delta,$ and $\eta$ so that $y(t_{k+1}) = y_{k+1}$. Since, the seperate terms are independent the corresponding coefficients of $h$ must be equal. Hene we obtain a system of equations given by
 \begin{align*}
-\beta + \gamma + \delta + \eta = 1
-\alpha\beta + \gamma\delta = \frac{1}{2}
+\beta + \gamma + \eta &= 1 & \BLU h^0 \BLK\\
+(\gamma+\eta)(\alpha +\delta)&= \frac{1}{2} & \BLU h^1 \BLK\\
+(\gamma + \eta)(\alpha^2+\delta^2) &= \frac{1}{3} & \BLU h^2 \BLK\\
+(\gamma +\eta)(\alpha^3+\delta^3)  &= \frac{1}{4} & \BLU h^3 \BLK\\
+(\gamma +\eta)(\alpha^4+\delta^4) &= \frac{1}{5} & \BLU h^4 \BLK\\
 \end{align*}
 Since we have $5$ variables, we require all 5 of the above equations to solve for each. However, an obvious solution is 
+
+
+
 
 \end{document}

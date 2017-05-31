@@ -8,5 +8,5 @@ function plot_points(xi,yi,vxi,vyi,axi,ayi,L)
     lgd = legend(h([1,4,5]),'x_i','v_i','a_i');
     lgd.Box = 'off';
     lgd.Location = 'southoutside';
-    lgd.Orientation = 'horizontal';
+    lgd.Orientation = 'horizontal';        
 end

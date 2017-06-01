@@ -1,4 +1,13 @@
 function plot_points(xi,yi,vxi,vyi,axi,ayi,L)
+% Illustrates N = size(xi) particles by displaying each
+% along with their associated velocity/acceleration vectors.
+%
+% INPUT:
+%   xi,yi: Coordinates (x,y) of each particles' center
+%   vxi,vyi: x and y components of each particles' velocity
+%   axi,ayi: x and y components of each particles' acceleration
+%   L: Side length of square box containing particles
+
     h(1)=plot(xi,yi,'*b'); hold on; axis([0, L, 0, L]);
     h(2)=plot(xi,yi,'ok','MarkerSize',12,'LineWidth',2);
     h(3)=plot(xi,yi,'oy','MarkerSize',12);       

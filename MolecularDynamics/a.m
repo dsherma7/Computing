@@ -1,4 +1,14 @@
 function ai = a(xi,yi,L)
+% Computes the acceleration for all particles p_i at locations
+% (x_i,y_i) inside a box L with periodic boundary conditions.
+%
+% INPUT:
+%   xi,yi: Coordinates (x,y) of N particles    
+%   L: Side length of square box
+%
+% OUTPUT:
+%   ai: Acceleration of each particle by Newtons Law a=F/m   
+
     n = size(xi,1);
     ai = zeros(n,1);
     fs = zeros(n,n);

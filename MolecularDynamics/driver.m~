@@ -6,7 +6,7 @@ N   = 20;     % Number of atoms
 dt  = 0.01;   % time increments
 L   = 5;      % edge length
 v0  = 20;     % initial velocity
-T   = 10;     % Time intervals
+T   = 100;     % Time intervals
 
 % Initalize the system
 vx = zeros(N,T+1);  vx(:,1) = rand(N,1)*v0;
@@ -26,8 +26,8 @@ ay(:,2) = a(y(:,2),x(:,2),L)*dt^2/m;
 %filename = 'v020dt01m00001N20.gif'; 
 filename = 'test.gif'; 
 
-plot_points(x(:,1),y(:,1),vx(:,1),vy(:,1),ax(:,1),ay(:,1),L);
-print_gif(filename,v0,dt,m,1);
+%plot_points(x(:,1),y(:,1),vx(:,1),vy(:,1),ax(:,1),ay(:,1),L);
+%print_gif(filename,v0,dt,m,1);
 for i = 2:T
     close;
     x(:,i+1) = mod(2*x(:,i)-x(:,i-1)+ax(:,i),L);
@@ -37,9 +37,18 @@ for i = 2:T
     ax(:,i+1) = a(x(:,i+1),y(:,i+1),L)*dt^2/m;
     ay(:,i+1) = a(y(:,i+1),x(:,i+1),L)*dt^2/m;
     
-    plot_points(x(:,i),y(:,i),vx(:,i),vy(:,i),ax(:,i),ay(:,i),L);    
-    print_gif(filename,v0,dt,m,i);
+    %plot_points(x(:,i),y(:,i),vx(:,i),vy(:,i),ax(:,i),ay(:,i),L);    
+    %print_gif(filename,v0,dt,m,i);
 end
 
 % Compare against known results
-KbT = (m/2)*mean(mean(vx).^2+mean(vx).^2);
+C=75; m=.06;             % normalization constant
+KbT = (m/2)*mean(mean(vx).^2+mean(vy).^2);
+P = @(v) C*v.^2/KbT.*exp(-m*v.^2/2*KbT);
+plot(min(z(:)):max(z(:)),P(min(z(:)):max(z(:))),'r');
+
+x_=(x - mean(x))./sqrt(var(x));
+y_=(y - mean(y))./sqrt(var(y));
+z = x_.^2+y_.^2; 
+hist(z,10); hold on;
+plot(min(z(:)):max(z(:)),P(min(z(:)):max(z(:))),'r');

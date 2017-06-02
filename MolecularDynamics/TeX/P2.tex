@@ -109,7 +109,7 @@
 \renewcommand{\abstractname}{Abstract}
 \begin{document}
 \title{MAT 128C - Program \# 2 Molecular Dynamics}
-\author{Douglas Sherman, Aaron Millstein, Doug Kubota}
+\author{Douglas Sherman, Aaron Millstein, Douglas Kubota}
 \date{June 2nd, 2017}
 \maketitle
 \rule{\textwidth}{1pt}
@@ -149,11 +149,11 @@ The following illustrates the evolution of a system using $N=20, v_0 = 20, \Delt
 \includegraphics[width = 2in]{7.png}&\includegraphics[width = 2in]{8.png}&\includegraphics[width = 2in]{9.png}\\
 \end{tabular}
 \end{center}
-The images above following the order of left to right then top to bottom. The green arrows indicate velocity and the red arrows indicate acceleration for each of the particles. Please visit the GitHub repository at \hyperlink{https://github.com/dsherma7/Computing/tree/master/MolecularDynamics/gif}{https://github.com/dsherma7/Computing/tree/master/MolecularDynamics/gif} to see .gif files illustrating the evolution of systems with various $v_0, N,$ and $\Delta t$ values to properly illustrate the dynamics of the Argon particles.
+The images above following the order of left to right then top to bottom. The green arrows indicate velocity and the red arrows indicate acceleration for each of the particles. Please visit the GitHub repository at \hyperlink{https://github.com/dsherma7/Computing/tree/master/MolecularDynamics/gif}{https://github.com/dsherma7/Computing/tree/master/MolecularDynamics/gif}\footnote{This url contains multiple .gif files for various $v_0, N,$ and $\Delta t$ values. It is a public GitHub repository, and is a far better representation of the system's dynamics than a few still frame iterations.} to see .gif files illustrating the evolution of systems with various $v_0, N,$ and $\Delta t$ values to properly illustrate the dynamics of the Argon particles.
 
 \subsection{Reducing Complexity}
 In order the reduce the complexity we make one assumption and one observation. Firstly, since $f_{ij}$ is the force on particle $i$ by particle $j$, it must be true that $|f_{ji}| = |f_{ij}|$. Thus we can store the computed $f_{ij}$ for $i<j$ and replace $f_{ij}$ for $i > j$ with these stored values after accounting for the change in direction of the force.  Moreover, since the force decays with distance exceptionally fast we assume that $f_{ij} = 0$ for particles with distance greater than $3\sigma$, or 3 Van der Waal's radii. The MATLAB code at the end of this report illustrates these adjustments for $f_{ij}=f(x)$
-
+\vfill
 
 \pagebreak
 \subsection{Distribution of Particles}

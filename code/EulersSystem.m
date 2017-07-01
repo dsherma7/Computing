@@ -1,11 +1,8 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Impliments Eulers Method   %
-% for approximating an IVP   %
-% z' = f(x,y), x' = z(t)     %
-% w' = g(x,y), y' = w(t)     %
-% across n intervals for     %
-% t in [a,b]			     %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Impliments Eulers Method for approximating an IVP   %
+% z' = f(x,y), x' = z(t) w' = g(x,y), y' = w(t)       %     
+% across n intervals for t in [a,b]                   %			     
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [y,x,z,w,t] = EulersSystem(f,g,x0,y0,z0,w0,tmax,h)    
     n = tmax/h;
     z = ones(1,n+1).*z0; 

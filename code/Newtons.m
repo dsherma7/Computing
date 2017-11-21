@@ -1,9 +1,18 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Perform Newton's       %
-% for optimization using %
-% dF and d2F             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [x,k]=Newtons(df,d2f,x0,k_max,thresh)
+% Uses Newtons method to find the minimum of 
+% a function F(x). Use -F(x) to find max.
+%
+% INPUT:
+%   df: Derivative of F
+%   d2f: 2nd Derivative of F
+%   x0: Starting point x0
+%   k_max: Max number of iterations 
+%   thresh: Threshold for determining minimum
+%
+% OUTPUT:
+%   x: x such that |df(x)-0| < thresh and d2f(x) > 0
+%   k: Number of iterations performed
+
     if ~exist('k_max','var')
         k_max = 100;
     end

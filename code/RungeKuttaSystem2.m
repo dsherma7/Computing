@@ -1,11 +1,20 @@
-% Impliments Runge-Kutta     %
-% for approximating an IVP   %
-% z' = f(x,y), x' = z(t)     %
-% w' = g(x,y), y' = w(t)     %
-% across n intervals for     %
-% t in [a,b]			     %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [t,y] = RungeKuttaSystem2(f,y0,tmax,h)    
+function [t,y] = RungeKuttaSystem2(f,y0,tmax,h) 
+% Impliments Runge Kutta Method for approximating 
+% an system of IVPs of the form 
+% y' = f(t,y), y' = [t1,t2,...,]
+% across n intervals for t in [0,tmax]
+% for y,y',F in R^n
+% 
+% INPUT:
+%   f: Function f(x,y):R^2->R where z'=f
+%   y0: Initial values for y
+%   tmax: max t value 
+%   n: number of sub-intervals
+%
+% OUTPUT:
+%   t: The divided number of sub-intervals
+%   y: Output x values for each x(ti)
+
     n = tmax/h;
     sz = length(y0);
     y = ones(sz,n+1).*y0;

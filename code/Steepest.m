@@ -1,4 +1,17 @@
 function [x,k]=Steepest(f,df,x0,k_max,thresh)
+% Uses Method of Steepest descrent to find 
+% the minimum of a function F(x)
+%
+% INPUT:
+%   df: Derivative of F
+%   x0: Starting point x0
+%   k_max: Max number of iterations 
+%   thresh: Threshold for determining minimum
+%
+% OUTPUT:
+%   x: x such that |df(x)-0| < thresh and d2f(x) > 0
+%   k: Number of iterations performed
+
     if ~exist('k_max','var')
         k_max = 100;
     end

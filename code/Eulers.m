@@ -9,6 +9,7 @@ function [y,t] = Eulers(f,y0,a,b,n)
 %   a: Left endpoint, equal to t0
 %   b: Right endpoint, equal to t0+hn
 %   n: Number of sub-intervals
+%
 % OUTPUT:
 %   y: Output y values for each y(ti)
 %   t: The divided number of sub-intervals
